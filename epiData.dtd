@@ -13,7 +13,7 @@
 <!ATTLIST Institution
     ID CDATA #REQUIRED>
 
-<!ELEMENT Category (#PCDATA | term*)>
+<!ELEMENT Category (#PCDATA | term*)*>
 <!ELEMENT term (#PCDATA)>
 
 <!ELEMENT Material (#PCDATA)>
