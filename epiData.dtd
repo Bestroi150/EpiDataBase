@@ -1,0 +1,66 @@
+<!ELEMENT epiData (inscription+)>
+
+<!ELEMENT inscription (Publisher, Origin, Origin-Geonames-Link, Origin-Pleiades-Link, Institution, Category, Material, Language, Text, Dating, Images?, Encoder)>
+<!ATTLIST inscription
+    n CDATA #REQUIRED>
+
+<!ELEMENT Publisher (#PCDATA)>
+<!ELEMENT Origin (#PCDATA)>
+<!ELEMENT Origin-Geonames-Link (#PCDATA)>
+<!ELEMENT Origin-Pleiades-Link (#PCDATA)>
+
+<!ELEMENT Institution EMPTY>
+<!ATTLIST Institution
+    ID CDATA #REQUIRED>
+
+<!ELEMENT Category (term*) | (#PCDATA)>
+<!ELEMENT term (#PCDATA)>
+
+<!ELEMENT Material (#PCDATA)>
+<!ELEMENT Language (#PCDATA)>
+
+<!ELEMENT Text (#PCDATA | lb | expan | abbr | ex | persName | title | supplied | unclear | place | gap)*>
+
+<!ELEMENT lb EMPTY>
+<!ATTLIST lb
+    n CDATA #IMPLIED
+    break CDATA #IMPLIED>
+
+<!ELEMENT expan (#PCDATA | abbr | ex)*>
+<!ATTLIST expan
+    reason CDATA #IMPLIED
+    type CDATA #IMPLIED>
+
+<!ELEMENT abbr (#PCDATA | supplied)*>
+
+<!ELEMENT ex (#PCDATA)>
+
+<!ELEMENT persName (#PCDATA | lb | expan | abbr | ex | supplied | unclear | place | gap | title)*>
+<!ATTLIST persName
+    type CDATA #IMPLIED>
+
+<!ELEMENT title (#PCDATA | lb | expan | abbr | ex | supplied | unclear | place | gap | persName)*>
+<!ATTLIST title
+    type CDATA #IMPLIED>
+
+<!ELEMENT supplied (#PCDATA | lb | expan | abbr | ex | persName | title | unclear | place | gap)*>
+<!ATTLIST supplied
+    reason CDATA #IMPLIED>
+
+<!ELEMENT unclear (#PCDATA)>
+<!ATTLIST unclear
+    reason CDATA #IMPLIED>
+
+<!ELEMENT place (#PCDATA | lb | expan | abbr | ex | supplied | unclear | persName | title | gap)*>
+<!ATTLIST place
+    type CDATA #IMPLIED>
+
+<!ELEMENT gap EMPTY>
+<!ATTLIST gap
+    reason CDATA #IMPLIED
+    extent CDATA #IMPLIED
+    unit CDATA #IMPLIED>
+
+<!ELEMENT Dating (#PCDATA)>
+<!ELEMENT Images (#PCDATA)>
+<!ELEMENT Encoder (#PCDATA)>
