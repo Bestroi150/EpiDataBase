@@ -1,189 +1,240 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="epiData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" name="inscription">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="Publisher" type="xs:string" />
-              <xs:element name="Origin" type="xs:string" />
-              <xs:element name="Origin-Geonames-Link" type="xs:string" />
-              <xs:element name="Origin-Pleiades-Link" type="xs:string" />
-              <xs:element name="Institution">
-                <xs:complexType>
-                  <xs:attribute name="ID" type="xs:string" use="required" />
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="Category">
-                <xs:complexType mixed="true">
-                  <xs:sequence minOccurs="0">
-                    <xs:element maxOccurs="unbounded" name="term" type="xs:string" />
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="Material" type="xs:string" />
-              <xs:element name="Language" type="xs:string" />
-              <xs:element name="Text">
-                <xs:complexType mixed="true">
-                  <xs:sequence>
-                    <xs:choice maxOccurs="unbounded">
-                      <xs:element maxOccurs="unbounded" name="lb">
-                        <xs:complexType>
-                          <xs:attribute name="n" type="xs:unsignedByte" use="optional" />
-                          <xs:attribute name="break" type="xs:string" use="optional" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="title">
-                        <xs:complexType mixed="true">
-                          <xs:sequence minOccurs="0">
-                            <xs:element minOccurs="0" name="ex" type="xs:string" />
-                            <xs:element minOccurs="0" name="expan">
-                              <xs:complexType mixed="true">
-                                <xs:sequence>
-                                  <xs:element name="ex" type="xs:string" />
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element>
-                            <xs:element minOccurs="0" name="lb">
-                              <xs:complexType>
-                                <xs:attribute name="n" type="xs:unsignedByte" use="required" />
-                              </xs:complexType>
-                            </xs:element>
-                          </xs:sequence>
-                          <xs:attribute name="type" type="xs:string" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="expan">
-                        <xs:complexType mixed="true">
-                          <xs:sequence>
-                            <xs:element minOccurs="0" name="abbr">
-                              <xs:complexType mixed="true">
-                                <xs:sequence minOccurs="0">
-                                  <xs:element name="supplied">
-                                    <xs:complexType>
-                                      <xs:simpleContent>
-                                        <xs:extension base="xs:string">
-                                          <xs:attribute name="reason" type="xs:string" use="required" />
-                                        </xs:extension>
-                                      </xs:simpleContent>
-                                    </xs:complexType>
-                                  </xs:element>
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element>
-                            <xs:element minOccurs="0" name="supplied">
-                              <xs:complexType>
-                                <xs:simpleContent>
-                                  <xs:extension base="xs:string">
-                                    <xs:attribute name="reason" type="xs:string" use="required" />
-                                  </xs:extension>
-                                </xs:simpleContent>
-                              </xs:complexType>
-                            </xs:element>
-                            <xs:element name="ex">
-                              <xs:complexType mixed="true">
-                                <xs:sequence minOccurs="0">
-                                  <xs:element name="unclear" type="xs:string" />
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element>
-                          </xs:sequence>
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="persName">
-                        <xs:complexType mixed="true">
-                          <xs:sequence minOccurs="0">
-                            <xs:element minOccurs="0" name="supplied">
-                              <xs:complexType>
-                                <xs:simpleContent>
-                                  <xs:extension base="xs:string">
-                                    <xs:attribute name="reason" type="xs:string" use="required" />
-                                  </xs:extension>
-                                </xs:simpleContent>
-                              </xs:complexType>
-                            </xs:element>
-                            <xs:element minOccurs="0" maxOccurs="unbounded" name="expan">
-                              <xs:complexType mixed="true">
-                                <xs:sequence>
-                                  <xs:element name="ex" type="xs:string" />
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element>
-                          </xs:sequence>
-                          <xs:attribute name="type" type="xs:string" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="place">
-                        <xs:complexType>
-                          <xs:simpleContent>
-                            <xs:extension base="xs:string">
-                              <xs:attribute name="type" type="xs:string" use="required" />
-                            </xs:extension>
-                          </xs:simpleContent>
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="abbr" type="xs:string" />
-                      <xs:element name="ex" type="xs:string" />
-                      <xs:element name="supplied">
-                        <xs:complexType mixed="true">
-                          <xs:sequence minOccurs="0">
-                            <xs:element minOccurs="0" name="persName">
-                              <xs:complexType>
-                                <xs:simpleContent>
-                                  <xs:extension base="xs:string">
-                                    <xs:attribute name="type" type="xs:string" use="required" />
-                                  </xs:extension>
-                                </xs:simpleContent>
-                              </xs:complexType>
-                            </xs:element>
-                            <xs:element minOccurs="0" name="expan">
-                              <xs:complexType>
-                                <xs:sequence>
-                                  <xs:element name="abbr" type="xs:string" />
-                                  <xs:element name="ex" type="xs:string" />
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element>
-                            <xs:element minOccurs="0" name="title">
-                              <xs:complexType>
-                                <xs:sequence>
-                                  <xs:element maxOccurs="unbounded" name="expan">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <xs:element name="abbr" type="xs:string" />
-                                        <xs:element name="ex" type="xs:string" />
-                                      </xs:sequence>
-                                    </xs:complexType>
-                                  </xs:element>
-                                </xs:sequence>
-                                <xs:attribute name="type" type="xs:string" use="required" />
-                              </xs:complexType>
-                            </xs:element>
-                          </xs:sequence>
-                          <xs:attribute name="reason" type="xs:string" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                      <xs:element name="gap">
-                        <xs:complexType>
-                          <xs:attribute name="reason" type="xs:string" use="required" />
-                          <xs:attribute name="extent" type="xs:string" use="required" />
-                          <xs:attribute name="unit" type="xs:string" use="required" />
-                        </xs:complexType>
-                      </xs:element>
-                    </xs:choice>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="Dating" type="xs:string" />
-              <xs:element name="Images" type="xs:string" />
-              <xs:element name="Encoder" type="xs:string" />
-            </xs:sequence>
-            <xs:attribute name="n" type="xs:unsignedByte" use="required" />
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="epiData" type="epiDataType"/>
+  <xs:complexType name="InstitutionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="ID" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CategoryType" mixed="true">
+    <xs:sequence>
+      <xs:element type="xs:string" name="term" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="lbType" mixed="true">
+    <xs:sequence>
+      <xs:element name="abbr">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="lbType" name="lb"/>
+      <xs:element type="persNameType" name="persName" minOccurs="0"/>
+      <xs:element type="expanType" name="expan"/>
+      <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+      <xs:element name="ex" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="unclear" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="titleType" name="title" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:byte" name="n" use="optional"/>
+    <xs:attribute type="xs:string" name="break" use="optional"/>
+    <xs:attribute type="xs:string" name="type" use="optional"/>
+    <xs:attribute type="xs:string" name="reason" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="titleType" mixed="true">
+    <xs:sequence>
+      <xs:element type="lbType" name="lb"/>
+      <xs:element type="expanType" name="expan" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="abbr">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ex" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="unclear" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="type" use="optional"/>
+    <xs:attribute type="xs:byte" name="n" use="optional"/>
+    <xs:attribute type="xs:string" name="break" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="expanType" mixed="true">
+    <xs:sequence>
+      <xs:element name="abbr">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="lbType" name="lb"/>
+      <xs:element type="persNameType" name="persName" minOccurs="0"/>
+      <xs:element type="expanType" name="expan"/>
+      <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+      <xs:element name="ex" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="unclear" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="titleType" name="title" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:byte" name="n" use="optional"/>
+    <xs:attribute type="xs:string" name="break" use="optional"/>
+    <xs:attribute type="xs:string" name="type" use="optional"/>
+    <xs:attribute type="xs:string" name="reason" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="persNameType" mixed="true">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="lbType" name="lb"/>
+      <xs:element type="expanType" name="expan"/>
+      <xs:element name="ex" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="unclear" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="suppliedType" name="supplied"/>
+      <xs:element name="abbr">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="persNameType" name="persName" minOccurs="0"/>
+      <xs:element type="titleType" name="title" minOccurs="0"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="type" use="optional"/>
+    <xs:attribute type="xs:byte" name="n" use="optional"/>
+    <xs:attribute type="xs:string" name="break" use="optional"/>
+    <xs:attribute type="xs:string" name="reason" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="placeType" mixed="true">
+    <xs:sequence>
+      <xs:element type="lbType" name="lb"/>
+      <xs:element type="expanType" name="expan"/>
+      <xs:element name="ex" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="unclear" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="type" use="optional"/>
+    <xs:attribute type="xs:byte" name="n" use="optional"/>
+    <xs:attribute type="xs:string" name="break" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="TextType" mixed="true">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="lbType" name="lb"/>
+      <xs:element type="titleType" name="title"/>
+      <xs:element type="expanType" name="expan"/>
+      <xs:element type="persNameType" name="persName"/>
+      <xs:element type="placeType" name="place"/>
+      <xs:element type="xs:string" name="abbr"/>
+      <xs:element name="ex">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element name="abbr">
+              <xs:complexType mixed="true">
+                <xs:sequence>
+                  <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element type="lbType" name="lb"/>
+            <xs:element type="expanType" name="expan"/>
+            <xs:element name="ex" minOccurs="0">
+              <xs:complexType mixed="true">
+                <xs:sequence>
+                  <xs:element type="xs:string" name="unclear" minOccurs="0"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute type="xs:byte" name="n" use="optional"/>
+          <xs:attribute type="xs:string" name="break" use="optional"/>
+          <xs:attribute type="xs:string" name="type" use="optional"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="suppliedType" name="supplied"/>
+      <xs:element type="gapType" name="gap"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="inscriptionType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Publisher"/>
+      <xs:element type="xs:string" name="Origin"/>
+      <xs:element type="xs:string" name="Origin-Geonames-Link"/>
+      <xs:element type="xs:string" name="Origin-Pleiades-Link"/>
+      <xs:element type="InstitutionType" name="Institution"/>
+      <xs:element type="CategoryType" name="Category"/>
+      <xs:element type="xs:string" name="Material"/>
+      <xs:element type="xs:string" name="Language"/>
+      <xs:element type="TextType" name="Text"/>
+      <xs:element type="xs:string" name="Dating"/>
+      <xs:element type="xs:string" name="Images"/>
+      <xs:element type="xs:string" name="Encoder"/>
+    </xs:sequence>
+    <xs:attribute type="xs:byte" name="n" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="suppliedType" mixed="true">
+    <xs:sequence>
+      <xs:element name="abbr">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="lbType" name="lb"/>
+      <xs:element type="persNameType" name="persName" minOccurs="0"/>
+      <xs:element type="expanType" name="expan"/>
+      <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+      <xs:element name="ex" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="unclear" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="titleType" name="title" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="reason" use="optional"/>
+    <xs:attribute type="xs:byte" name="n" use="optional"/>
+    <xs:attribute type="xs:string" name="break" use="optional"/>
+    <xs:attribute type="xs:string" name="type" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="exType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="unclear" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="abbrType" mixed="true">
+    <xs:sequence>
+      <xs:element type="suppliedType" name="supplied" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="gapType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="reason"/>
+        <xs:attribute type="xs:string" name="extent"/>
+        <xs:attribute type="xs:string" name="unit"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="epiDataType">
+    <xs:sequence>
+      <xs:element type="inscriptionType" name="inscription" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
