@@ -26,31 +26,39 @@
     n CDATA #IMPLIED
     break CDATA #IMPLIED>
 
-<!ELEMENT expan (#PCDATA | abbr | ex | supplied | unclear | lb)*>
+<!-- expan can mix #PCDATA with its child elements -->
+<!ELEMENT expan (#PCDATA | abbr | supplied | ex | unclear | lb)*>
 <!ATTLIST expan
     reason CDATA #IMPLIED
     type CDATA #IMPLIED>
 
+<!-- abbr can mix #PCDATA with supplied -->
 <!ELEMENT abbr (#PCDATA | supplied | lb)*>
 
+<!-- ex can mix #PCDATA with unclear -->
 <!ELEMENT ex (#PCDATA | unclear | lb)*>
 
+<!-- persName allows mixed content with nested elements -->
 <!ELEMENT persName (#PCDATA | lb | expan | abbr | ex | supplied | unclear | place | gap | title)*>
 <!ATTLIST persName
     type CDATA #IMPLIED>
 
+<!-- title allows mixed content -->
 <!ELEMENT title (#PCDATA | lb | expan | abbr | ex | supplied | unclear | place | gap | persName)*>
 <!ATTLIST title
     type CDATA #IMPLIED>
 
+<!-- supplied allows mixed content -->
 <!ELEMENT supplied (#PCDATA | lb | expan | abbr | ex | persName | title | unclear | place | gap)*>
 <!ATTLIST supplied
     reason CDATA #IMPLIED>
 
-<!ELEMENT unclear (#PCDATA | lb)*>
+<!-- unclear allows only #PCDATA -->
+<!ELEMENT unclear (#PCDATA)>
 <!ATTLIST unclear
     reason CDATA #IMPLIED>
 
+<!-- place allows mixed content -->
 <!ELEMENT place (#PCDATA | lb | expan | abbr | ex | supplied | unclear | persName | title | gap)*>
 <!ATTLIST place
     type CDATA #IMPLIED>
