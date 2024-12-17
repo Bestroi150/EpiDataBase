@@ -81,6 +81,24 @@
     </xs:complexType>
   </xs:element>
 
+  <!-- Reusable Inline Type for Mixed Content -->
+  <xs:complexType name="inlineType" mixed="true">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="lb"/>
+        <xs:element ref="expan"/>
+        <xs:element ref="abbr"/>
+        <xs:element ref="ex"/>
+        <xs:element ref="persName"/>
+        <xs:element ref="title"/>
+        <xs:element ref="supplied"/>
+        <xs:element ref="unclear"/>
+        <xs:element ref="place"/>
+        <xs:element ref="gap"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
   <!-- Expansion Element -->
   <xs:element name="expan">
     <xs:complexType>
@@ -101,45 +119,56 @@
 
   <!-- Person Name Element -->
   <xs:element name="persName">
-    <xs:complexType mixed="true">
-      <xs:sequence>
-        <xs:element ref="expan" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:sequence>
-      <xs:attribute name="type" type="xs:string" use="optional"/>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="inlineType">
+          <xs:attribute name="type" type="xs:string" use="optional"/>
+        </xs:extension>
+      </xs:complexContent>
     </xs:complexType>
   </xs:element>
 
   <!-- Title Element -->
   <xs:element name="title">
-    <xs:complexType mixed="true">
-      <xs:sequence>
-        <xs:element ref="expan" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:sequence>
-      <xs:attribute name="type" type="xs:string" use="optional"/>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="inlineType">
+          <xs:attribute name="type" type="xs:string" use="optional"/>
+        </xs:extension>
+      </xs:complexContent>
     </xs:complexType>
   </xs:element>
 
   <!-- Supplied Element -->
   <xs:element name="supplied">
-    <xs:complexType mixed="true">
-      <xs:attribute name="reason" type="xs:string" use="optional"/>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="reason" type="xs:string" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
     </xs:complexType>
   </xs:element>
 
   <!-- Unclear Element -->
   <xs:element name="unclear">
     <xs:complexType>
-      <xs:attribute name="reason" type="xs:string" use="optional"/>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="reason" type="xs:string" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
     </xs:complexType>
   </xs:element>
 
   <!-- Place Element -->
   <xs:element name="place">
-    <xs:complexType mixed="true">
-      <xs:sequence>
-        <xs:element ref="expan" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:sequence>
-      <xs:attribute name="type" type="xs:string" use="optional"/>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="inlineType">
+          <xs:attribute name="type" type="xs:string" use="optional"/>
+        </xs:extension>
+      </xs:complexContent>
     </xs:complexType>
   </xs:element>
 
