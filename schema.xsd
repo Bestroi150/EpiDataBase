@@ -3,22 +3,6 @@
            elementFormDefault="qualified"
            attributeFormDefault="unqualified">
 
-  <!-- Define a group for inline elements -->
-  <xs:group name="inlineElements">
-    <xs:choice maxOccurs="unbounded" minOccurs="0">
-      <xs:element ref="lb"/>
-      <xs:element ref="expan"/>
-      <xs:element ref="abbr"/>
-      <xs:element ref="ex"/>
-      <xs:element ref="persName"/>
-      <xs:element ref="title"/>
-      <xs:element ref="supplied"/>
-      <xs:element ref="unclear"/>
-      <xs:element ref="place"/>
-      <xs:element ref="gap"/>
-    </xs:choice>
-  </xs:group>
-
   <!-- Root Element -->
   <xs:element name="epiData">
     <xs:complexType>
@@ -47,7 +31,18 @@
               <xs:element name="Text">
                 <xs:complexType mixed="true">
                   <xs:sequence>
-                    <xs:group ref="inlineElements"/>
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                      <xs:element ref="lb"/>
+                      <xs:element ref="expan"/>
+                      <xs:element ref="abbr"/>
+                      <xs:element ref="ex"/>
+                      <xs:element ref="persName"/>
+                      <xs:element ref="title"/>
+                      <xs:element ref="supplied"/>
+                      <xs:element ref="unclear"/>
+                      <xs:element ref="place"/>
+                      <xs:element ref="gap"/>
+                    </xs:choice>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -62,7 +57,9 @@
     </xs:complexType>
   </xs:element>
 
-  <!-- Definition of lb element -->
+  <!-- Inline Elements Definitions -->
+
+  <!-- lb Element -->
   <xs:element name="lb">
     <xs:complexType>
       <xs:attribute name="n" type="xs:integer" use="optional"/>
@@ -70,78 +67,118 @@
     </xs:complexType>
   </xs:element>
 
-  <!-- Definition of expan element -->
+  <!-- expan Element -->
   <xs:element name="expan">
     <xs:complexType mixed="true">
       <xs:sequence>
-        <xs:element name="abbr" type="xs:string" minOccurs="0"/>
-        <xs:element name="ex" type="xs:string" minOccurs="0"/>
+        <xs:element name="abbr" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="ex" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="reason" type="xs:string" use="optional"/>
       <xs:attribute name="type" type="xs:string" use="optional"/>
     </xs:complexType>
   </xs:element>
 
-  <!-- abbr as a complex type with possible 'supplied' -->
+  <!-- abbr Element -->
   <xs:element name="abbr">
     <xs:complexType mixed="true">
       <xs:sequence>
-        <xs:element ref="supplied" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="supplied" type="suppliedType" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
-  <!-- ex as a simple string -->
+  <!-- ex Element -->
   <xs:element name="ex" type="xs:string"/>
 
-  <!-- Definition of persName -->
+  <!-- persName Element -->
   <xs:element name="persName">
     <xs:complexType mixed="true">
       <xs:sequence>
-        <xs:group ref="inlineElements"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="expan"/>
+          <xs:element ref="abbr"/>
+          <xs:element ref="ex"/>
+          <xs:element ref="supplied"/>
+          <xs:element ref="unclear"/>
+          <xs:element ref="place"/>
+          <xs:element ref="gap"/>
+          <xs:element ref="title"/>
+          <xs:element ref="lb"/>
+        </xs:choice>
       </xs:sequence>
       <xs:attribute name="type" type="xs:string" use="optional"/>
     </xs:complexType>
   </xs:element>
 
-  <!-- Definition of title -->
+  <!-- title Element -->
   <xs:element name="title">
     <xs:complexType mixed="true">
       <xs:sequence>
-        <xs:group ref="inlineElements"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="expan"/>
+          <xs:element ref="abbr"/>
+          <xs:element ref="ex"/>
+          <xs:element ref="supplied"/>
+          <xs:element ref="unclear"/>
+          <xs:element ref="place"/>
+          <xs:element ref="gap"/>
+          <xs:element ref="persName"/>
+          <xs:element ref="lb"/>
+        </xs:choice>
       </xs:sequence>
       <xs:attribute name="type" type="xs:string" use="optional"/>
     </xs:complexType>
   </xs:element>
 
-  <!-- Definition of supplied -->
+  <!-- supplied Element -->
   <xs:element name="supplied">
     <xs:complexType mixed="true">
       <xs:sequence>
-        <xs:group ref="inlineElements"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="title"/>
+          <xs:element ref="persName"/>
+          <xs:element ref="expan"/>
+          <xs:element ref="abbr"/>
+          <xs:element ref="ex"/>
+          <xs:element ref="unclear"/>
+          <xs:element ref="place"/>
+          <xs:element ref="gap"/>
+          <xs:element ref="lb"/>
+        </xs:choice>
       </xs:sequence>
       <xs:attribute name="reason" type="xs:string" use="optional"/>
     </xs:complexType>
   </xs:element>
 
-  <!-- Definition of unclear -->
+  <!-- unclear Element -->
   <xs:element name="unclear">
     <xs:complexType mixed="true">
       <xs:attribute name="reason" type="xs:string" use="optional"/>
     </xs:complexType>
   </xs:element>
 
-  <!-- Definition of place -->
+  <!-- place Element -->
   <xs:element name="place">
     <xs:complexType mixed="true">
       <xs:sequence>
-        <xs:group ref="inlineElements"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="expan"/>
+          <xs:element ref="abbr"/>
+          <xs:element ref="ex"/>
+          <xs:element ref="supplied"/>
+          <xs:element ref="unclear"/>
+          <xs:element ref="persName"/>
+          <xs:element ref="title"/>
+          <xs:element ref="gap"/>
+          <xs:element ref="lb"/>
+        </xs:choice>
       </xs:sequence>
       <xs:attribute name="type" type="xs:string" use="optional"/>
     </xs:complexType>
   </xs:element>
 
-  <!-- Definition of gap -->
+  <!-- gap Element -->
   <xs:element name="gap">
     <xs:complexType>
       <xs:attribute name="reason" type="xs:string" use="optional"/>
@@ -149,5 +186,23 @@
       <xs:attribute name="unit" type="xs:string" use="optional"/>
     </xs:complexType>
   </xs:element>
+
+  <!-- suppliedType Complex Type for 'supplied' Element -->
+  <xs:complexType name="suppliedType" mixed="true">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="title"/>
+        <xs:element ref="persName"/>
+        <xs:element ref="expan"/>
+        <xs:element ref="abbr"/>
+        <xs:element ref="ex"/>
+        <xs:element ref="unclear"/>
+        <xs:element ref="place"/>
+        <xs:element ref="gap"/>
+        <xs:element ref="lb"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="reason" type="xs:string" use="optional"/>
+  </xs:complexType>
 
 </xs:schema>
