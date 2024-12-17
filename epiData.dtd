@@ -26,14 +26,14 @@
     n CDATA #IMPLIED
     break CDATA #IMPLIED>
 
-<!ELEMENT expan (#PCDATA | abbr | ex)*>
+<!ELEMENT expan (#PCDATA | abbr | ex | supplied)*>
 <!ATTLIST expan
     reason CDATA #IMPLIED
     type CDATA #IMPLIED>
 
 <!ELEMENT abbr (#PCDATA | supplied)*>
 
-<!ELEMENT ex (#PCDATA)>
+<!ELEMENT ex (#PCDATA | unclear)*>
 
 <!ELEMENT persName (#PCDATA | lb | expan | abbr | ex | supplied | unclear | place | gap | title)*>
 <!ATTLIST persName
