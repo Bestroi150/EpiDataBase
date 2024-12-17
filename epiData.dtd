@@ -13,7 +13,6 @@
 <!ATTLIST Institution
     ID CDATA #REQUIRED>
 
-<!-- Corrected Category declaration -->
 <!ELEMENT Category (#PCDATA | term)*>
 <!ELEMENT term (#PCDATA)>
 
