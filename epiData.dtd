@@ -13,7 +13,7 @@
 <!ATTLIST Institution
     ID CDATA #REQUIRED>
 
-<!ELEMENT Category (term*) | (#PCDATA)>
+<!ELEMENT Category (#PCDATA | term*)>
 <!ELEMENT term (#PCDATA)>
 
 <!ELEMENT Material (#PCDATA)>
@@ -26,14 +26,14 @@
     n CDATA #IMPLIED
     break CDATA #IMPLIED>
 
-<!ELEMENT expan (#PCDATA | abbr | ex | supplied)*>
+<!ELEMENT expan (#PCDATA | abbr | ex | supplied | unclear | lb)*>
 <!ATTLIST expan
     reason CDATA #IMPLIED
     type CDATA #IMPLIED>
 
-<!ELEMENT abbr (#PCDATA | supplied)*>
+<!ELEMENT abbr (#PCDATA | supplied | lb)*>
 
-<!ELEMENT ex (#PCDATA | unclear)*>
+<!ELEMENT ex (#PCDATA | unclear | lb)*>
 
 <!ELEMENT persName (#PCDATA | lb | expan | abbr | ex | supplied | unclear | place | gap | title)*>
 <!ATTLIST persName
@@ -47,7 +47,7 @@
 <!ATTLIST supplied
     reason CDATA #IMPLIED>
 
-<!ELEMENT unclear (#PCDATA)>
+<!ELEMENT unclear (#PCDATA | lb)*>
 <!ATTLIST unclear
     reason CDATA #IMPLIED>
 
